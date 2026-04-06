@@ -19,6 +19,8 @@ public class TaskServiceImpl implements TaskService {
         existing.setDescription(task.getDescription());
         existing.setTitle(task.getTitle());
         existing.setCreatedAt(task.getCreatedAt());
+        existing.setStartDate(task.getStartDate());
+        existing.setEndDate(task.getEndDate());
         return taskRepository.save(existing);
     }
 
