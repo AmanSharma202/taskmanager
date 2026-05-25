@@ -1,5 +1,6 @@
 package com.task.taskmanager.controller;
 
+import com.task.taskmanager.DTO.*;
 import com.task.taskmanager.entity.User;
 import com.task.taskmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,13 @@ public class UserController {
         }
     }
 
-    @GetMapping("/login")
-    ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
+    @PostMapping("/login")
+    ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
 
         try {
-            User presentUser = userRepository.findByEmail(email);
-        if (presentUser.getPassword().equals(password)) {
+            User presentUser = userRepository.findByEmail(loginRequest.getEmail());
+        if (presentUser.getPassword().equals(loginRequest.getPassword())) {
             return ResponseEntity.status(HttpStatus.OK).body(presentUser);
         }
 
